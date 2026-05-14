@@ -1,0 +1,247 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+}
+
+body{
+    background-color: rgba(0, 0, 0, 0.767);
+}
+
+:root {
+    --font-principal: 'DM Sans', sans-serif;
+    --font_size_large: 16px;
+    --font_size_medium: 14px;
+    --font_size_small: 12px;
+    --font_weight_regular: 400;
+    --font_weight_medium: 600;
+    --font_color_primary: #39393b;
+    --font_color_secondary: #8b8b8c;
+    --background_color_primary: #683ee6;
+}
+
+/* ── Checkbox oculto ── */
+#chat-check {
+    display: none;
+}
+
+/* ── Botón flotante ── */
+.kodee--button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--background_color_primary);
+    border-radius: 100px;
+    outline: 1px solid white;
+    color: white;
+    margin: 4px;
+    padding: 8px 16px;
+    font-size: var(--font_size_medium);
+    font-weight: var(--font_weight_medium);
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    cursor: pointer;
+}
+
+/* ── Panel oculto por defecto ── */
+.kodee--panel {
+    position: fixed;
+    top: 100px;
+    bottom: 70px;
+    right: 40px;
+    width: 340px;
+    background: white;
+    border-radius: 18px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+    opacity: 1;
+    pointer-events: none;
+    transform: translateY(12px) scale(0.97);
+    transform-origin: bottom right;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Panel visible cuando el checkbox está marcado ── */
+#chat-check:checked ~ .kodee--panel {
+    opacity: 1;
+    pointer-events: all;
+    transform: none;
+}
+
+/* ── Header ── */
+.kodee--panel__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: var(--font_weight_medium);
+    color: var(--font_color_primary);
+}
+
+.kodee--close {
+    cursor: pointer;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+/* ── Body ── */
+.kodee--panel__body {
+    padding: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+    justify-content: space-between;
+}
+
+.kodee--panel__body h2 {
+    font-size: 24px;
+    font-weight: var(--font_weight_medium);
+    color: var(--font_color_primary);
+    margin-top: 16px;
+    margin-bottom: 1px;
+}
+
+.kodee--panel__body p {
+    font-size: 15px;
+    color: var(--font_color_secondary);
+    margin-bottom: 8px;
+}
+
+/* ── Sugerencias ── */
+.kodee--suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15pc;
+    text-align: left;
+}
+
+.kodee--suggestion {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 14px;
+    font-size: 14px;
+    color: var(--font_color_primary);
+    text-decoration: none;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    transition: background 0.15s;
+}
+
+.kodee--suggestion::before {
+    content: "↗";
+    color: var(--font_color_secondary);
+    font-size: 14px;
+}
+
+.kodee--suggestion:hover {
+    background: #f9f9f9;
+}
+
+/* ── Pastillas ── */
+.kodee--tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top:0px;
+    text-align: left;
+}
+
+.kodee--tag {
+    margin-top: 4px;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    border: 1px solid #ddd;
+    color: var(--font_color_secondary);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.kodee--tag.active {
+    background: var(--background_color_primary);
+    color: white;
+    border-color: var(--background_color_primary);
+}
+
+/* ── Input area ── */
+.kodee--input-area {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 10px 12px;
+}
+
+.kodee--input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-family: var(--font-principal);
+    color: var(--font_color_primary);
+    resize: none;
+    min-height: 60px;
+    width: 100%;
+    background: transparent;
+}
+
+.kodee--input::placeholder {
+    color: white;
+}
+
+.kodee--input-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.kodee--dot {
+    color: var(--background_color_primary);
+    font-size: 20px;
+    line-height: 1;
+}
+
+.kodee--send {
+    background: #e8e8e8;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+
+.kodee--send:hover {
+    background: #ddd;
+}
+
+/* ── Disclaimer ── */
+.kodee--disclaimer {
+    font-size: 11px;
+    color: var(--font_color_secondary);
+    text-align: center;
+    margin-top: 0px;
+    padding-bottom: 8px;
+}

@@ -1,0 +1,52 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.chat-gpt{
+    min-height: 100vh;
+    background-color: #212121;
+    padding: 18px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.chat-gpt__code{
+background-color: #181818;
+border-radius: 15px;
+border: 1px solid rgb(61, 55, 55);
+width: 50%;
+}
+
+.code__header{
+    color: white;
+    background-color:transparent;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background-color: #212121;
+    z-index: 1;
+
+}
+
+.code__header button{
+    color: white;
+    background-color: transparent;
+    border: none;
+
+}
+
+
+.code__body{
+    min-height: 1900px;
+    color: white;
+    position: relative;
+z-index: 2;
+}

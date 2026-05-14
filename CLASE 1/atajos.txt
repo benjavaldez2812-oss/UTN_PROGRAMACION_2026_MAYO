@@ -1,0 +1,6 @@
+GUARDAR ARCHIVO = Control + S
+deshacer = Control + Z
+rehacer = Control + Y
+Cortar = Control + X
+Copiar = Control + V
+Pegar = Control + C

@@ -1,0 +1,72 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.bi-chevron-right{
+    font-size: 32px;
+    color: #2968C8;
+}
+
+.lista-ml{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: yellow;
+    padding: 48px 0; 
+}
+
+.lista-ml__content{
+    width: 1180px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    
+}
+
+.product-card-ml{
+    width: 183px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.21);
+    background-color: white;
+}
+
+.lista-ml__controls{
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.21);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+
+    /* 
+    en caso de que un elemento tenga right y left o top y bottom al mismo tiempo, se aplicara la precedencia
+    left siempre es mas importante que right
+    top siempre  es mas importante que bottom
+    */
+
+    /* right: -30px; */
+    right: 0;
+
+    transform: translateX(50%);
+    /* top: calc(50% - 30px); */
+    transition: 300ms ease-in-out;
+}
+
+.lista-ml__controls:hover{
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.21);
+    transform: translateX(70%);
+    transition: 300ms ease-in-out;
+}
+

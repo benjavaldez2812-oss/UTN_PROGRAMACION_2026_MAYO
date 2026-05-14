@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.padre{
+    background-color: green;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 50vh;
+    position: relative;
+}
+
+.hijo{
+    width: 200px;
+    height: 300px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+/* 
+Position sirve para hacer posicionamientos no convencionales de elementos.
+Si pueden evitar usar position y en cambio usar flexbox HAGANLO
+
+Position: relative
+Sirve para mover x elemento desde su posicion original. Es decir cuando queremos que cierto elemento siga estando en la pagina pero con pequeñas variaciones de ubicacion.
+Por si solo, es poco usado.
+
+Position: static
+No hace ninguna variacion de posicionamiento sobre el elemento, es el position que viene por defecto sobre los elementos
+bottom, left, right y top NO TIENEN EFECTO si el elemento es position static
+
+Position: Absolute
+Mover los elementos libremente sobre/o debajo de otros elementos
+Va a buscar al position DISTINTO DE STATIC mas cercano
+*/
+
+.hijo-2{
+    position: absolute;
+    background-color: red;
+    top: 20px;
+    right: 20px;
+}
+

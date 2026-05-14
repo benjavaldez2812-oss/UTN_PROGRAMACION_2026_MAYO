@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { margin: 0; background: #080408; display: flex; align-items: center; justify-content: center; min-height: 640px; cursor: none; overflow: hidden; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+canvas.width = 680;
+canvas.height = 660;
+
+const CX = 340, CY = 320;
+const FONT_SIZE = 19;
+const SPEED = 0.28;
+
+function heartPoint(t) {
+  const x = 16 * Math.pow(Math.sin(t), 3);
+  const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+  return { x: x * 21, y: y * 21 };
+}
+
+const NUM_STEPS = 5000;
+const heartPath = [];
+const dists = [0];
+let pathLength = 0;
+
+for (let i = 0; i < NUM_STEPS; i++) {
+  const t = (i / NUM_STEPS) * Math.PI * 2;
+  heartPath.push(heartPoint(t));
+  if (i > 0) {
+    const a = heartPath[i-1], b = heartPath[i];
+    pathLength += Math.sqrt((b.x-a.x)**2 + (b.y-a.y)**2);
+  }
+  dists.push(pathLength);
+}
+
+function getPt(d) {
+  d = ((d % pathLength) + pathLength) % pathLength;
+  let lo = 0, hi = NUM_STEPS - 1;
+  while (lo < hi - 1) {
+    const mid = (lo + hi) >> 1;
+    dists[mid] <= d ? lo = mid : hi = mid;
+  }
+  const frac = (dists[lo+1] - dists[lo]) === 0 ? 0 : (d - dists[lo]) / (dists[lo+1] - dists[lo]);
+  const p0 = heartPath[lo], p1 = heartPath[(lo+1) % NUM_STEPS];
+  return {
+    x: p0.x + (p1.x - p0.x) * frac,
+    y: p0.y + (p1.y - p0.y) * frac,
+    angle: Math.atan2(p1.y - p0.y, p1.x - p0.x)
+  };
+}
+
+ctx.font = `bold ${FONT_SIZE}px Georgia, serif`;
+const UNIT = 'I love you ';
+const unitW = ctx.measureText(UNIT).width;
+const copies = Math.floor(pathLength / unitW);
+const scale = (pathLength / copies) / unitW;
+
+const chars = [];
+let pos = 0;
+const baseUnit = UNIT.repeat(copies + 1);
+for (let i = 0; i < baseUnit.length; i++) {
+  const ch = baseUnit[i];
+  const w = ctx.measureText(ch).width * scale;
+  if (pos >= pathLength) break;
+  chars.push({ ch, d: pos, w });
+  pos += w;
+}
+
+// Particles floating around
+const particles = [];
+for (let i = 0; i < 55; i++) {
+  particles.push({
+    x: Math.random() * 680,
+    y: Math.random() * 660,
+    r: Math.random() * 1.5 + 0.4,
+    alpha: Math.random() * 0.4 + 0.1,
+    speed: Math.random() * 0.3 + 0.08,
+    drift: (Math.random() - 0.5) * 0.3,
+    phase: Math.random() * Math.PI * 2,
+  });
+}
+
+// Orbiting sparkles around heart
+const sparkles = [];
+for (let i = 0; i < 18; i++) {
+  const t = (i / 18) * Math.PI * 2;
+  const pt = heartPoint(t);
+  sparkles.push({
+    basePt: pt,
+    offset: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.025 + 0.01,
+    r: Math.random() * 2.5 + 1,
+    alpha: Math.random() * 0.6 + 0.3,
+    twinklePhase: Math.random() * Math.PI * 2,
+  });
+}
+
+// Mouse hearts
+const miniHearts = [];
+let mouse = { x: -999, y: -999 };
+let lastSpawn = 0;
+
+canvas.addEventListener('mousemove', e => {
+  const rect = canvas.getBoundingClientRect();
+  mouse.x = (e.clientX - rect.left) * (canvas.width / rect.width);
+  mouse.y = (e.clientY - rect.top) * (canvas.height / rect.height);
+  const now = Date.now();
+  if (now - lastSpawn > 55) {
+    lastSpawn = now;
+    miniHearts.push({
+      x: mouse.x + (Math.random() - 0.5) * 10,
+      y: mouse.y + (Math.random() - 0.5) * 10,
+      size: Math.random() * 7 + 5,
+      vy: -(Math.random() * 0.6 + 0.25),
+      vx: (Math.random() - 0.5) * 0.5,
+      life: 1.0,
+      decay: Math.random() * 0.013 + 0.007,
+      hue: Math.random() * 30 + 340,
+    });
+  }
+});
+
+function drawMiniHeart(x, y, size, alpha, hue) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = `hsl(${hue},80%,60%)`;
+  const s = size * 0.5;
+  ctx.beginPath();
+  ctx.moveTo(x, y + s * 0.5);
+  ctx.bezierCurveTo(x, y - s*0.3, x - s, y - s*0.3, x - s, y + s*0.2);
+  ctx.bezierCurveTo(x - s, y + s*0.8, x, y + s*1.3, x, y + s*1.3);
+  ctx.bezierCurveTo(x, y + s*1.3, x + s, y + s*0.8, x + s, y + s*0.2);
+  ctx.bezierCurveTo(x + s, y - s*0.3, x, y - s*0.3, x, y + s*0.5);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawHeartPath(alpha) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.strokeStyle = 'rgba(200,30,60,1)';
+  ctx.lineWidth = 0.5;
+  ctx.beginPath();
+  for (let i = 0; i <= NUM_STEPS; i++) {
+    const pt = heartPath[i % NUM_STEPS];
+    i === 0 ? ctx.moveTo(CX + pt.x, CY + pt.y) : ctx.lineTo(CX + pt.x, CY + pt.y);
+  }
+  ctx.closePath();
+  ctx.stroke();
+  ctx.restore();
+}
+
+let offset = 0;
+let frame = 0;
+const startTime = Date.now();
+
+function draw() {
+  const t = (Date.now() - startTime) / 1000;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Background subtle radial
+  const bg = ctx.createRadialGradient(CX, CY, 0, CX, CY, 380);
+  bg.addColorStop(0, 'rgba(40,5,15,0.95)');
+  bg.addColorStop(1, 'rgba(8,4,8,0)');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Floating dust particles
+  for (const p of particles) {
+    p.y -= p.speed;
+    p.x += Math.sin(t * 0.5 + p.phase) * p.drift;
+    if (p.y < -5) p.y = 665;
+    ctx.save();
+    ctx.globalAlpha = p.alpha * (0.6 + 0.4 * Math.sin(t * 1.2 + p.phase));
+    ctx.fillStyle = 'rgb(220,80,100)';
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // Pulsing glow behind heart
+  const pulse = 1 + 0.06 * Math.sin(t * 2.2);
+  ctx.save();
+  ctx.translate(CX, CY);
+  ctx.scale(pulse, pulse);
+  ctx.translate(-CX, -CY);
+  const g1 = ctx.createRadialGradient(CX, CY+10, 20, CX, CY+10, 230);
+  g1.addColorStop(0, 'rgba(200,20,50,0.22)');
+  g1.addColorStop(0.5, 'rgba(160,10,40,0.10)');
+  g1.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = g1;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.restore();
+
+  // Faint heart outline
+  drawHeartPath(0.07 + 0.04 * Math.sin(t * 2));
+
+  // Orbiting sparkles
+  for (const sp of sparkles) {
+    sp.offset += sp.speed;
+    const r = 14 + 5 * Math.sin(sp.offset * 3);
+    const sx = CX + sp.basePt.x + Math.cos(sp.offset) * r;
+    const sy = CY + sp.basePt.y + Math.sin(sp.offset) * r;
+    const twinkle = 0.3 + 0.7 * Math.abs(Math.sin(t * 3 + sp.twinklePhase));
+    ctx.save();
+    ctx.globalAlpha = sp.alpha * twinkle;
+    ctx.fillStyle = `hsl(${340 + Math.sin(t + sp.offset) * 20}, 90%, 70%)`;
+    ctx.beginPath();
+    ctx.arc(sx, sy, sp.r * twinkle, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // Main text on heart
+  ctx.font = `bold ${FONT_SIZE}px Georgia, serif`;
+  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'left';
+
+  for (let i = 0; i < chars.length; i++) {
+    const { ch, d } = chars[i];
+    const dist = ((d + offset) % pathLength + pathLength) % pathLength;
+    const pt = getPt(dist);
+    const progress = dist / pathLength;
+
+    const shimmer = Math.sin(progress * Math.PI * 2 * copies + t * 3);
+    const r = Math.floor(210 + 40 * shimmer);
+    const g2 = Math.floor(15 + 20 * Math.abs(shimmer));
+    const b2 = Math.floor(30 + 20 * Math.abs(shimmer));
+
+    const glowAlpha = 0.12 + 0.1 * Math.abs(shimmer);
+
+    ctx.save();
+    ctx.translate(CX + pt.x, CY + pt.y);
+    ctx.rotate(pt.angle);
+
+    // Subtle text glow
+    ctx.shadowColor = `rgba(255,60,80,${glowAlpha * 4})`;
+    ctx.shadowBlur = 6;
+    ctx.fillStyle = `rgb(${r},${g2},${b2})`;
+    ctx.globalAlpha = 0.82 + 0.18 * Math.abs(shimmer);
+    ctx.fillText(ch, 0, 0);
+    ctx.restore();
+  }
+
+  // Mouse mini hearts
+  for (let i = miniHearts.length - 1; i >= 0; i--) {
+    const h = miniHearts[i];
+    h.x += h.vx;
+    h.y += h.vy;
+    h.vy *= 0.995;
+    h.life -= h.decay;
+    if (h.life <= 0) { miniHearts.splice(i, 1); continue; }
+    drawMiniHeart(h.x, h.y, h.size * (0.5 + h.life * 0.5), h.life * 0.5, h.hue);
+  }
+
+  // Cursor dot
+  if (mouse.x > 0) {
+    ctx.save();
+    ctx.globalAlpha = 0.7;
+    ctx.fillStyle = 'rgba(255,80,100,0.8)';
+    ctx.beginPath();
+    ctx.arc(mouse.x, mouse.y, 3, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  offset += SPEED;
+  frame++;
+  requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+</body>
+</html>

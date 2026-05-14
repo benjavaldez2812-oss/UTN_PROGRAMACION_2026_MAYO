@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>registrate</h1>
+    <a href="../../index.html">ir a inicio</a>
+    <form>
+<div>
+    <label for="fullname">First Name:</label>
+    <input type="text" id="fullname" placeholder="john" minlength="4" max="20" required>
+</div>
+
+<div>
+     <label for="second_name">Last Name:</label>
+     <input type="text" id="second_name" placeholder="Doe">
+</div>
+
+<div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="johnDoe@email.com">
+</div>
+
+<div>
+     <label for="password">Password:</label>
+    <input type="password" name="password" pattern="^(?=.*[A-Z]).+$" placeholder="Abc123" title="La contraseña tiene que tene una mayuscula required"/>
+</div>
+
+<div>
+    <label>Gender:</label><BR>
+    <input type="radio" name="Gender"> Male<br>
+    <input type="radio" name="Gender"> Female<BR>
+    <input type="radio" name="Gender"> Other<BR>
+</div>
+
+<div>
+    <label for="Age">Age:</label>
+    <input type="number"><br>
+</div>
+
+<div>
+    <labeL for="birth_date">Birthdate</label>
+    <input type="date" id="birth_date">
+</div>
+
+<div>
+    <label>Preferences:</label><br>
+    <label>Acrylic Paiting</label>
+    <input type="checkbox"><br>
+    <label> Oil Paiting</label>
+    <input type="checkbox"><br>
+    <label>Water Color Paiting</label>
+    <input type="checkbox"><br>
+
+</div>
+
+<div>
+    <label for="country"></label>country</label>
+    <select id="country" name="country">
+            <option>argentina</option>
+            <option>brasil</option>
+            <option disabled>France</option>
+            <option>chile</option>
+            <option selected disabled>No Selected</option>
+    </select><br>
+</div>
+
+<div>
+    <br><label for="mensaje">Select Occupation</label>
+    <select id="mensaje">
+            <option>Student</option><br>
+            <option>Unemployed</option><br><br>
+        
+    </select>
+    <br><br><label>Biography</label>
+    <br><textarea name="mensaje" id="mensaje" cols="30" rows="10"></textarea><br>
+
+</div>
+
+<div>
+<input type="submit">
+ <button type="submit">Registrar</button>
+
+</div>
+
+
+
+<div>
+    <label for="profile-picture">selecciona una foto de perfil</label>
+    <input type="file" name="profile-picture" id="profile-picture" accept=".jpg">
+</div>
+
+    </form>
+
+</body>
+</html>
