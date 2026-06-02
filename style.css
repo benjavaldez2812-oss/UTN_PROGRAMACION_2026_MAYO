@@ -1,0 +1,674 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0 ;
+    box-sizing: border-box;
+    font-family: "Inter",Arial, Helvetica, sans-serif
+}
+
+:root {
+--color-principal:#2b2b2b ;
+--color-secundario:#652bdf ;
+--color-tercero:#e2d2ff ;
+--color-cuarto:#f0eafc ;
+--color-quinto:#360c72;
+}
+
+
+/*___________ Contenedor Principal del Header______________ */
+.cabezera-header {
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+}
+.header-contenedor {
+    max-width: 1200px; /* Limita el ancho para que no se desarme al 30% */
+    margin: 0 auto;    /* Centra el bloque en la pantalla */
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;  
+    align-items: center;
+}
+
+
+/* Lado Izquierdo: Hamburguesa + Logo + Menú */
+.header-izquierdo{
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espaciado uniforme entre elementos del lado izquierdo */
+}
+
+/* Ocultar menú hamburguesa por defecto en pantallas grandes */
+.menu-tocar {
+    display: none; 
+}
+
+.logo img {
+    height: 35px; 
+    display: block;
+}
+
+/* Menú de Navegación */
+.nav-menu {
+    display: flex;
+    gap: 30px; 
+}
+
+.nav-enlace {
+    padding: 8px 10px;
+    border-radius: 24px; 
+    cursor: pointer;
+    transition: color 0.50s ease;
+    text-decoration: none;
+    color: var(--color-principal);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.nav-link:hover {
+    background-color: var(--color-tercero);
+    color: var(--color-secundario); 
+    border: 1px solid #cccccc;
+}
+
+/* Lado Derecho: Botones de Acción */
+.header-acciones {
+    display: flex; /* IMPORTANTE: Activa flex para que los botones no se rompan */
+    align-items: center;
+    gap: 15px; 
+    flex-shrink: 0; /* Evita que los botones se achiquen o deformen */
+}
+
+/* Estilos de los botones */
+.btn {
+    padding: 10px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 25px; 
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap; /* Evita que el texto del botón se divida en dos líneas */
+}
+
+/* Botón "Espacio Nave"*/
+.btn-outline {
+    background-color: transparent;
+    color: #2b4cb7;
+    border: 1px solid #cccccc;
+}
+
+.btn-outline:hover {
+    border-color: var(--color-secundario);
+    background-color: #efdcfa;
+}
+
+/* Botón "Entrar a Nave"*/
+.btn-primary {
+    background-color: var(--color-secundario); 
+    color: #ffffff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-tercero); 
+    color: var(--color-secundario);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin: 0 auto 80px;
+    padding: 4% 0;
+    color: var(--color-principal);
+    text-align: center;
+    max-width: 860px;
+}
+
+.contenedor-flex {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.bloque {
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    text-align: left;
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 14px 40px rgba(11, 22, 61, 0.08);
+    padding: 22px 20px;
+    box-sizing: border-box;
+    min-width: 260px;
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bloque:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 70px rgba(11, 22, 61, 0.12);
+}
+
+.icono-contenedor {
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    background-color: var(--color-cuarto);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.icono {
+    width: 22px;
+    height: 22px;
+    color: var(--color-secundario);
+}
+
+.bloque h2 {
+    font-size: 19px;
+    margin: 0;
+    color: var(--color-principal);
+}
+
+.bloque-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.bloque p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #5f5f5f;
+    margin: 0;
+}
+
+.caja-historias {
+    width: min(950px, 100%);
+    background-color: #e2d2ff;
+    border-radius: 24px;
+    padding: 35px 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.textos-historias {
+    display: block;
+}
+
+.texto.h2-container {
+    color: var(--color-quinto);
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    display: block;
+}
+
+.texto.p-container {
+    color:var(--color-quinto);
+    font-size: 18px;
+    margin: 0;
+    display: block;
+}
+
+.button-historias {
+    background-color:white ;
+    color:var(--color-secundario) ;
+    border: none;
+    padding: 10px 35px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.button-historias:hover {
+    background-color: var(--color-principal); 
+    color: white;
+} 
+
+/* ---____________ cobro qr_______________--- */
+.seccion-titulo {
+    text-align: center;
+    margin-top: 70px;
+}
+
+.titulo-secundario {
+    color: var(--color-principal);
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+/* Sección contenedora general */
+.seccion-qr {
+    width: 100%;
+    max-width: 960px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+/* Contenedor flexible de dos columnas */
+.contenedor-qr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Columna de textos */
+.contenido-texto {
+    flex: 1;
+    max-width: 550px;
+}
+
+.titulo-qr {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.descripcion-qr {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #555555;
+    margin-bottom: 32px;
+}
+
+/* Enlace "Conocer más >" */
+.enlace-mas {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--color-quinto); 
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.enlace-mas:hover {
+    color: var(--color-secundario);
+}
+
+.flecha {
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+/* Columna de la imagen */
+.contenedor-imagen-qr {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.imagen-qr {
+    max-width: 450px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.imagen-qr:hover {
+    transform: translateY(-10px);
+}
+
+@media (max-width: 900px) {
+    .contenedor-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bloque {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .icono-contenedor {
+        margin-bottom: 20px;
+    }
+}
+
+/*__________________ contenedor point____________________ */
+/* Estilo para controlar el tamaño del point  */
+
+/* Sección contenedora general */
+.seccion-point {
+    width: 100%;
+    max-width: 960px;
+    margin: 60px auto;
+    padding: 0 20px;
+    
+}
+
+/* Contenedor flexible de dos columnas */
+.contenedor-point {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-direction: row-reverse;/* <--- Esto pasa la imagen a la izquierda y el texto a la derecha */
+}
+
+/* Columna de textos */
+.contenido-texto_point {
+    flex: 1;
+    max-width: 550px;
+}
+
+.titulo-point{
+    font-size: 24px;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.descripcion-point {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #555555;
+    margin-bottom: 32px;
+}
+
+/* Enlace "Conocer más >" */
+.enlace-point{
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--color-quinto); 
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.enlace-point:hover {
+    color: var(--color-secundario);
+}
+
+.flecha_point {
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+/* Columna de la imagen */
+.contenedor-imagen-point {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.imagen-point {
+    max-width: 450px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.imagen-point:hover {
+    transform: translateY(-10px);
+}
+
+/*______________________ footer________________*/
+
+/* Estilos generales del Footer */
+
+/* Contenedor principal en fila */
+.cont_general{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px; /* Separación horizontal entre columnas */
+}
+
+/* Estructura para cada columna de enlaces */
+.cont
+{
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Separación vertical entre links */
+    min-width: 190px;
+}
+
+.tittle {
+    color: #333333;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+}
+
+
+.link {
+    color: #666666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.link:hover {
+    color:var(--color-secundario); /* Oscurece al pasar el cursor */
+    text-decoration-line: underline;
+}
+
+.hr {
+    margin: 50px;
+}
+
+/*_____________________________________medias__________________________________________________ */
+
+/* 1. ESTILOS BASE PARA EL MENÚ HAMBURGUESA (Fuera de las queries) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+
+
+@media (max-width: 820px) {
+   
+    .header-container {
+        padding: 15px 20px;
+    }
+    .nav-menu {
+        gap: 15px;
+    }
+    .nav-link {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+    .btn {
+        padding: 8px 18px;
+        font-size: 13px;
+    }
+
+    /* Estructura de los 3 bloques principales */
+    .contenedor-flex {
+        flex-direction: column; /* Cambia a columna en tablets también para que no se apriete */
+        align-items: center;
+        gap: 20px;
+        padding: 0 20px;
+    }
+    .bloque {
+        width: 100%;
+        padding: 20px;
+    }
+
+    /* Título principal */
+    .h1 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
+    /* Banner de Historias */
+    .caja-historias {
+        width: 90%;
+        padding: 25px 30px;
+    }
+    .texto.h2-container {
+        font-size: 24px;
+    }
+    .texto.p-container {
+        font-size: 16px;
+    }
+
+    /* Secciones QR y Point */
+    .seccion-qr, .seccion-point {
+        padding: 0 40px;
+        margin: 40px auto;
+    }
+    .contenedor-qr, .contenedor-point {
+        gap: 20px;
+    }
+    .imagen-qr, .imagen-point {
+        max-width: 350px;
+    }
+
+    /* Footer */
+    .cont_general {
+        flex-wrap: wrap;
+        gap: 25px;
+        justify-content: space-around;
+    }
+    .cont {
+        min-width: 150px;
+    }
+}
+
+
+/* 3. PANTALLAS CHICAS / CELULARES (Hasta 768px) */
+@media (max-width: 768px) {
+    /* Header Móvil Ordenado: Muestra hamburguesa y oculta links de texto */
+    .menu-toggle {
+        display: flex; /* Activa la hamburguesa */
+        grid-column: 1; /* Fuerza a la hamburguesa a ir a la izquierda */
+        justify-self: start;
+    }
+    .logo {
+        grid-column: 2; /* Centra el logo exactamente en el medio */
+        justify-self: center;
+    }
+    .nav-menu {
+        display: none !important; /* Oculta los links de texto */
+    }
+    .header-actions {
+        display: none !important; /* Oculta los botones derecho para que no rompan el espacio */
+    }
+    .header-container {
+        padding: 15px 20px;
+        justify-content: space-between; /* Mantiene logo a un lado y hamburguesa al otro */
+        display: grid !important;
+        grid-template-columns: 1fr auto 1fr; /* Divide el header en 3 partes iguales */
+        align-items: center;
+        padding: 15px 20px;
+    }
+    .header-left {
+        display: contents; /* Desactiva el contenedor flex intermedio para permitir el grid */
+    }
+
+    /* Títulos de secciones */
+    .h1 {
+        font-size: 1.6rem;
+        margin: 30px 15px;
+        text-align: center;
+    }
+    .seccion-titulo {
+        margin-top: 40px;
+    }
+    .titulo-secundario {
+        font-size: 26px;
+        padding: 0 15px;
+    }
+
+    /* Historias */
+    .caja-historias {
+        width: 90%;
+        height: auto;
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 25px;
+    }
+    .texto.h2-container {
+        font-size: 20px;
+    }
+    .texto.p-container {
+        font-size: 15px;
+    }
+
+    /* Secciones QR y Point: Apiladas verticalmente y centradas */
+    .contenedor-qr, .contenedor-point {
+        flex-direction: column !important; /* Fuerza a que vayan hacia abajo */
+        text-align: center;
+        gap: 25px;
+    }
+    .contenido-texto, .contenido-texto_point {
+        max-width: 100%;
+    }
+    .descripcion-qr, .descripcion-point {
+        margin-bottom: 20px;
+    }
+    .enlace-mas, .enlace-point {
+        justify-content: center;
+    }
+    .contenedor-imagen-qr, .contenedor-imagen-point {
+        justify-content: center;
+        width: 100%;
+    }
+    .imagen-qr, .imagen-point {
+        max-width: 280px;
+    }
+
+    /* Footer Mobile: Dos columnas ordenadas por fila */
+    footer {
+        padding: 30px 20px;
+        text-align: center;
+    }
+    footer img {
+        margin-bottom: 25px;
+    }
+    .cont_general {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px 10px;
+    }
+    .cont {
+        width: 45%;
+        min-width: unset;
+        align-items: center;
+    }
+    hr {
+        margin: 30px 20px;
+    }
+}
