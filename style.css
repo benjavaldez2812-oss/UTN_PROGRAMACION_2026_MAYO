@@ -16,15 +16,14 @@
 }
 
 
-/*___________ Contenedor Principal del Header______________ */
 .cabezera-header {
     width: 100%;
     background-color: #ffffff;
     border-bottom: 1px solid #f0f0f0;
 }
 .header-contenedor {
-    max-width: 1200px; /* Limita el ancho para que no se desarme al 30% */
-    margin: 0 auto;    /* Centra el bloque en la pantalla */
+    max-width: 1200px; 
+    margin: 0 auto;    
     padding: 15px 40px;
     display: flex;
     justify-content: space-between;  
@@ -32,14 +31,14 @@
 }
 
 
-/* Lado Izquierdo: Hamburguesa + Logo + Menú */
+
 .header-izquierdo{
     display: flex;
     align-items: center;
-    gap: 20px; /* Espaciado uniforme entre elementos del lado izquierdo */
+    gap: 20px;
 }
 
-/* Ocultar menú hamburguesa por defecto en pantallas grandes */
+
 .menu-tocar {
     display: none; 
 }
@@ -49,7 +48,7 @@
     display: block;
 }
 
-/* Menú de Navegación */
+
 .nav-menu {
     display: flex;
     gap: 30px; 
@@ -72,15 +71,15 @@
     border: 1px solid #cccccc;
 }
 
-/* Lado Derecho: Botones de Acción */
+
 .header-acciones {
-    display: flex; /* IMPORTANTE: Activa flex para que los botones no se rompan */
+    display: flex; 
     align-items: center;
     gap: 15px; 
-    flex-shrink: 0; /* Evita que los botones se achiquen o deformen */
+    flex-shrink: 0; 
 }
 
-/* Estilos de los botones */
+
 .btn {
     padding: 10px 24px;
     font-size: 15px;
@@ -88,10 +87,10 @@
     border-radius: 25px; 
     cursor: pointer;
     transition: all 0.2s ease;
-    white-space: nowrap; /* Evita que el texto del botón se divida en dos líneas */
+    white-space: nowrap; 
 }
 
-/* Botón "Espacio Nave"*/
+
 .btn-outline {
     background-color: transparent;
     color: #2b4cb7;
@@ -103,7 +102,7 @@
     background-color: #efdcfa;
 }
 
-/* Botón "Entrar a Nave"*/
+
 .btn-primary {
     background-color: var(--color-secundario); 
     color: #ffffff;
@@ -240,7 +239,7 @@ h1 {
     color: white;
 } 
 
-/* ---____________ cobro qr_______________--- */
+
 .seccion-titulo {
     text-align: center;
     margin-top: 70px;
@@ -252,7 +251,7 @@ h1 {
     font-weight: 700;
     letter-spacing: -0.5px;
 }
-/* Sección contenedora general */
+
 .seccion-qr {
     width: 100%;
     max-width: 960px;
@@ -260,7 +259,7 @@ h1 {
     padding: 0 20px;
 }
 
-/* Contenedor flexible de dos columnas */
+
 .contenedor-qr {
     display: flex;
     justify-content: space-between;
@@ -268,7 +267,7 @@ h1 {
     gap: 40px;
 }
 
-/* Columna de textos */
+
 .contenido-texto {
     flex: 1;
     max-width: 550px;
@@ -288,7 +287,7 @@ h1 {
     margin-bottom: 32px;
 }
 
-/* Enlace "Conocer más >" */
+
 .enlace-mas {
     font-size: 17px;
     font-weight: 600;
@@ -307,7 +306,7 @@ h1 {
     font-size: 20px;
 }
 
-/* Columna de la imagen */
+
 .contenedor-imagen-qr {
     flex: 1;
     display: flex;
@@ -343,10 +342,6 @@ h1 {
     }
 }
 
-/*__________________ contenedor point____________________ */
-/* Estilo para controlar el tamaño del point  */
-
-/* Sección contenedora general */
 .seccion-point {
     width: 100%;
     max-width: 960px;
@@ -355,16 +350,16 @@ h1 {
     
 }
 
-/* Contenedor flexible de dos columnas */
+
 .contenedor-point {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 40px;
-    flex-direction: row-reverse;/* <--- Esto pasa la imagen a la izquierda y el texto a la derecha */
+    flex-direction: row-reverse;
 }
 
-/* Columna de textos */
+
 .contenido-texto_point {
     flex: 1;
     max-width: 550px;
@@ -384,7 +379,7 @@ h1 {
     margin-bottom: 32px;
 }
 
-/* Enlace "Conocer más >" */
+
 .enlace-point{
     font-size: 17px;
     font-weight: 600;
@@ -403,7 +398,7 @@ h1 {
     font-size: 20px;
 }
 
-/* Columna de la imagen */
+
 .contenedor-imagen-point {
     flex: 1;
     display: flex;
@@ -421,12 +416,7 @@ h1 {
 .imagen-point:hover {
     transform: translateY(-10px);
 }
-
-/*______________________ footer________________*/
-
-/* Estilos generales del Footer */
-
-/* Contenedor principal en fila */
+    
 .cont_general{
     display: flex;
     flex-direction: row;
@@ -434,15 +424,15 @@ h1 {
     justify-content: flex-start;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 20px; /* Separación horizontal entre columnas */
+    gap: 20px; 
 }
 
-/* Estructura para cada columna de enlaces */
+
 .cont
 {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Separación vertical entre links */
+    gap: 12px; 
     min-width: 190px;
 }
 
@@ -462,7 +452,7 @@ h1 {
 }
 
 .link:hover {
-    color:var(--color-secundario); /* Oscurece al pasar el cursor */
+    color:var(--color-secundario); 
     text-decoration-line: underline;
 }
 
@@ -470,9 +460,7 @@ h1 {
     margin: 50px;
 }
 
-/*_____________________________________medias__________________________________________________ */
 
-/* 1. ESTILOS BASE PARA EL MENÚ HAMBURGUESA (Fuera de las queries) */
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -497,7 +485,7 @@ h1 {
 
 
 @media (max-width: 820px) {
-   
+
     .header-container {
         padding: 15px 20px;
     }
@@ -513,9 +501,9 @@ h1 {
         font-size: 13px;
     }
 
-    /* Estructura de los 3 bloques principales */
+
     .contenedor-flex {
-        flex-direction: column; /* Cambia a columna en tablets también para que no se apriete */
+        flex-direction: column; 
         align-items: center;
         gap: 20px;
         padding: 0 20px;
@@ -525,13 +513,13 @@ h1 {
         padding: 20px;
     }
 
-    /* Título principal */
+    
     .h1 {
         font-size: 2rem;
         margin-bottom: 40px;
     }
 
-    /* Banner de Historias */
+
     .caja-historias {
         width: 90%;
         padding: 25px 30px;
@@ -543,7 +531,7 @@ h1 {
         font-size: 16px;
     }
 
-    /* Secciones QR y Point */
+    
     .seccion-qr, .seccion-point {
         padding: 0 40px;
         margin: 40px auto;
@@ -555,7 +543,7 @@ h1 {
         max-width: 350px;
     }
 
-    /* Footer */
+    
     .cont_general {
         flex-wrap: wrap;
         gap: 25px;
@@ -567,37 +555,37 @@ h1 {
 }
 
 
-/* 3. PANTALLAS CHICAS / CELULARES (Hasta 768px) */
+
 @media (max-width: 768px) {
-    /* Header Móvil Ordenado: Muestra hamburguesa y oculta links de texto */
+    
     .menu-toggle {
-        display: flex; /* Activa la hamburguesa */
-        grid-column: 1; /* Fuerza a la hamburguesa a ir a la izquierda */
+        display: flex; 
+        grid-column: 1;
         justify-self: start;
     }
     .logo {
-        grid-column: 2; /* Centra el logo exactamente en el medio */
+        grid-column: 2; 
         justify-self: center;
     }
     .nav-menu {
-        display: none !important; /* Oculta los links de texto */
+        display: none !important;
     }
     .header-actions {
-        display: none !important; /* Oculta los botones derecho para que no rompan el espacio */
+        display: none !important;
     }
     .header-container {
         padding: 15px 20px;
-        justify-content: space-between; /* Mantiene logo a un lado y hamburguesa al otro */
+        justify-content: space-between; 
         display: grid !important;
-        grid-template-columns: 1fr auto 1fr; /* Divide el header en 3 partes iguales */
+        grid-template-columns: 1fr auto 1fr; 
         align-items: center;
         padding: 15px 20px;
     }
     .header-left {
-        display: contents; /* Desactiva el contenedor flex intermedio para permitir el grid */
+        display: contents; 
     }
 
-    /* Títulos de secciones */
+    
     .h1 {
         font-size: 1.6rem;
         margin: 30px 15px;
@@ -611,7 +599,7 @@ h1 {
         padding: 0 15px;
     }
 
-    /* Historias */
+
     .caja-historias {
         width: 90%;
         height: auto;
@@ -627,9 +615,9 @@ h1 {
         font-size: 15px;
     }
 
-    /* Secciones QR y Point: Apiladas verticalmente y centradas */
+    
     .contenedor-qr, .contenedor-point {
-        flex-direction: column !important; /* Fuerza a que vayan hacia abajo */
+        flex-direction: column !important; 
         text-align: center;
         gap: 25px;
     }
@@ -650,7 +638,7 @@ h1 {
         max-width: 280px;
     }
 
-    /* Footer Mobile: Dos columnas ordenadas por fila */
+    
     footer {
         padding: 30px 20px;
         text-align: center;
@@ -671,4 +659,5 @@ h1 {
     hr {
         margin: 30px 20px;
     }
+
 }
